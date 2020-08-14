@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class RsEventResponse {
+public class ProductResponse {
     private Integer id;
     private String eventName;
     private String keyword;

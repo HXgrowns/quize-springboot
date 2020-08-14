@@ -1,11 +1,11 @@
 package com.thoughtworks.rslist.repository;
 
-import com.thoughtworks.rslist.entity.RsEventEntity;
+import com.thoughtworks.rslist.entity.ProductEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
-public interface RsEventRepository extends JpaRepository<RsEventEntity, Integer> {
+public interface ProductRepository extends JpaRepository<ProductEntity, Integer> {
     @Modifying
     @Query(value = "delete from rs_event where user_id=?1", nativeQuery = true)
     void deleteByUserId(Integer id);

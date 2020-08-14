@@ -1,10 +1,7 @@
 package com.thoughtworks.rslist.api;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.thoughtworks.rslist.domain.RsEvent;
-import com.thoughtworks.rslist.domain.User;
-import com.thoughtworks.rslist.entity.RsEventEntity;
-import com.thoughtworks.rslist.entity.UserEntity;
+import com.thoughtworks.rslist.domain.Product;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -19,19 +16,18 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class RsEventControllerTest {
+public class ProductControllerTest {
     @Autowired
     MockMvc mockMvc;
 
     @Test
     void shouldAddEventSuccess() throws Exception {
-        User user = new User();
-        user.setId(1);
-        RsEvent rsEvent = new RsEvent("third event", "three", user);
+        String imgSrc = "https://image.baidu.com/search";
+        Product product = new Product("kele1", 1.0, imgSrc, 0, "ping");
         ObjectMapper objectMapper = new ObjectMapper();
-        String rsEventString = objectMapper.writeValueAsString(rsEvent);
+        String rsEventString = objectMapper.writeValueAsString(product);
 
-        mockMvc.perform(post("/rs")
+        mockMvc.perform(post("/product")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(rsEventString))
                 .andExpect(status().isCreated());
@@ -63,12 +59,10 @@ public class RsEventControllerTest {
 
     @Test
     void shouldUpdateRsEvent() throws Exception {
-        UserEntity user = new User("huxiao", 18, "female", "hu@thoughtworks.com", "18888818888").build();
-        user.setId(3);
-        RsEventEntity rsEvent = new RsEventEntity("new event", "new one", user);
+        String imgSrc = "https://image.baidu.com/search/detail?ct=503316480&z=0&tn=baiduimagedetail&ipn=d&word=%E5%8F%AF%E4%B9%90&step_word=&ie=utf-8&in=&cl=2&lm=-1&st=-1&hd=undefined&latest=undefined&copyright=undefined&cs=3577027695,1137157466&os=2186992339,3321455270&simid=3295121143,231832716&pn=5&rn=1&di=54230&ln=1440&fr=&fmq=1597392933152_R&ic=undefined&s=undefined&se=&sme=&tab=0&width=undefined&height=undefined&face=undefined&is=0,0&istype=2&ist=&jit=&bdtype=0&spn=0&pi=0&gsm=0&objurl=http%3A%2F%2Fs10.stb001.cn%2Fftp_product_img%2Fcn1100121026P00_1_xnl.jpg%3Ft%3D20170117&rpstart=0&rpnum=0&adpicid=0&force=undefined";
+        Product product = new Product("可乐1", 1.0, imgSrc, 0, "瓶");
         ObjectMapper objectMapper = new ObjectMapper();
-        String rsEventString = objectMapper.writeValueAsString(rsEvent);
-
+        String rsEventString = objectMapper.writeValueAsString(product);
         mockMvc.perform(patch("/rs/5")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(rsEventString))
