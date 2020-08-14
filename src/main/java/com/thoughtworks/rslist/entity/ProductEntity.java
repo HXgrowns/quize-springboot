@@ -4,7 +4,6 @@ import lombok.*;
 
 import javax.persistence.*;
 
-import com.thoughtworks.rslist.response.ProductResponse;
 
 @Entity
 @Table(name = "product")
@@ -23,4 +22,15 @@ public class ProductEntity {
     private String imgSrc;
     private int count;
     private String unit;
+
+    public ProductEntity build() {
+        return ProductEntity.builder()
+                .id(this.id)
+                .name(this.name)
+                .price(this.price)
+                .imgSrc(this.imgSrc)
+                .count(this.count)
+                .unit(this.unit)
+                .build();
+    }
 }

@@ -49,7 +49,7 @@ public class ProductControllerTest {
 
     @Test
     public void shouldFindAllByPage() throws Exception {
-        String rsEventList = mockMvc.perform(get("/rsEvents")
+        String rsEventList = mockMvc.perform(get("/products")
                 .param("size", "10")
                 .param("page", "0"))
                 .andExpect(status().isOk())

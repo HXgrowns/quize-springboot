@@ -2,9 +2,6 @@ package com.thoughtworks.rslist.api;
 
 import com.thoughtworks.rslist.domain.Product;
 import com.thoughtworks.rslist.entity.ProductEntity;
-import com.thoughtworks.rslist.exception.CommonError;
-import com.thoughtworks.rslist.exception.InvalidIndexException;
-import com.thoughtworks.rslist.response.ProductResponse;
 import com.thoughtworks.rslist.service.RsEventService;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -35,12 +32,12 @@ public class ProductController {
     //public ResponseEntity findRsEventById(@PathVariable int id) throws InvalidIndexException {
     //    return ResponseEntity.ok(rsEventService.findById(id));
     //}
-    //
-    //@GetMapping(value = "/rsEvents")
-    //public ResponseEntity<Page<ProductResponse>> findListByPage(@RequestParam(required = false, defaultValue = "10") Integer size, @RequestParam(required = false, defaultValue = "0") Integer page) {
-    //    return ResponseEntity.ok(rsEventService.findListByPage(size, page));
-    //}
-    //
+
+    @GetMapping(value = "/products")
+    public ResponseEntity<Page<ProductEntity>> findListByPage(@RequestParam(required = false, defaultValue = "10") Integer size, @RequestParam(required = false, defaultValue = "0") Integer page) {
+        return ResponseEntity.ok(rsEventService.findListByPage(size, page));
+    }
+
     //@PatchMapping(value = "/rs/{id}")
     //public ResponseEntity<Object> update(@PathVariable int id, @RequestBody ProductEntity inputProductEntity) {
     //    ProductEntity rs = rsEventService.update(id, inputProductEntity);

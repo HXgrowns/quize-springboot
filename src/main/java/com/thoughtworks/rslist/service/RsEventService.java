@@ -4,6 +4,8 @@ import com.thoughtworks.rslist.domain.Product;
 import com.thoughtworks.rslist.entity.ProductEntity;
 import com.thoughtworks.rslist.repository.ProductRepository;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.transaction.annotation.Transactional;
 
 public class RsEventService {
@@ -18,6 +20,10 @@ public class RsEventService {
     public void save(Product product) {
         ProductEntity productEntity = product.build();
         productRepository.save(productEntity);
+    }
+
+    public Page<ProductEntity> findListByPage(Integer size, Integer page) {
+        return productRepository.findAll(PageRequest.of(page, size));
     }
 
     //@Transactional
@@ -70,9 +76,6 @@ public class RsEventService {
     //    return productRepository.findById(id).orElseThrow(() -> new InvalidRsEventException("rsEvent is not exists")).build();
     //}
     //
-    //public Page<ProductResponse> findListByPage(Integer size, Integer page) {
-    //    return productRepository.findAll(PageRequest.of(page, size)).map(ProductEntity::build);
-    //}
     //
     //public void deleteById(Integer id) {
     //    if (!productRepository.findById(id).isPresent()) {
