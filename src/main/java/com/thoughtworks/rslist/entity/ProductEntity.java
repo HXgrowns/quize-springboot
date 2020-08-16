@@ -19,8 +19,7 @@ public class ProductEntity {
 
     private String name;
     private Double price;
-    private String imgSrc;
-    private int count;
+    private String img;
     private String unit;
 
     public ProductEntity build() {
@@ -28,8 +27,7 @@ public class ProductEntity {
                 .id(this.id)
                 .name(this.name)
                 .price(this.price)
-                .imgSrc(this.imgSrc)
-                .count(this.count)
+                .img(this.img)
                 .unit(this.unit)
                 .build();
     }

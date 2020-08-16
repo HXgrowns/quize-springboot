@@ -14,15 +14,14 @@ public class Product {
     private Integer id;
 
     private String name;
-    private Double price;    private String imgSrc;
-    private int count;
+    private Double price;
+    private String img;
     private String unit;
 
-    public Product(String name, Double price, String imgSrc, int count, String unit) {
+    public Product(String name, Double price, String img, String unit) {
         this.name = name;
         this.price = price;
-        this.imgSrc = imgSrc;
-        this.count = count;
+        this.img = img;
         this.unit = unit;
     }
     public ProductEntity build() {
@@ -30,8 +29,7 @@ public class Product {
                 .id(this.id)
                 .name(this.name)
                 .price(this.price)
-                .imgSrc(this.imgSrc)
-                .count(this.count)
+                .img(this.img)
                 .unit(this.unit)
                 .build();
     }
